@@ -259,7 +259,7 @@ public class TransactionController {
 
 
             // Redirect to the download page
-            return "redirect:/transactions";
+            return "redirect:/transactions/downloadPdf";
         } else {
             // Redirect to an error page if the transaction is not found
             return "redirect:/error";
