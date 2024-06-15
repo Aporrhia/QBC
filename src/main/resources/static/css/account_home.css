@@ -1,0 +1,129 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #F6F0E2;
+}
+
+.libre-baskerville-regular {
+    font-family: "Libre Baskerville", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+.main{
+    padding-top: 195px;
+    padding-bottom: 170px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    border-bottom: 1px solid #372e1e;
+    background-color: #F6F0E2;
+}
+
+.navbar {
+    position: fixed;
+    top: 108px;
+    width: 100%;
+    z-index: 999;
+    border-bottom: 1px solid #372e1e;
+    background-color: #F6F0E2;
+}
+
+.dropdown-menu {
+    background-color: #F6F0E2;
+}
+
+@media (max-width: 768px) {
+    .navbar .dropdown-menu {
+        position: static;
+        float: none;
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+    }
+    .dropdown-item:focus .dropdown-toggle:focus .dropdown-menu:focus .dropdown:focus {
+        outline: none;
+    }
+}
+
+.back-btn {
+    padding: 5px 10px;
+    background-color: #384840;
+    color: #F6F0E2;
+    border-radius: 8px;
+    border-color: #384840;
+    transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+
+.back-btn:hover {
+    background-color: #313f38;
+    border-color: #313f38;
+}
+
+.footer {
+    position: fixed;
+    z-index: 999;
+    bottom: 0;
+    width: 100%;
+    max-width: 100%;
+    background-color: #F6F0E2;
+    padding-bottom: 10px;
+    padding-top: 20px;
+    margin-top: 10px;
+    text-align: center;
+    color: #292929;
+    border-top: 1px solid #372e1e;
+}
+
+.footer a{
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.footer ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer h5{
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.footer p{
+    font-size: 12px;
+    margin: 0;
+}
+
+.info-main{
+    margin-top: 150px;
+    margin-bottom: 30px;
+    background-color: #f4eee1;
+    border: solid 1px;
+    border-color: #372e1e;
+    color: #292929;
+    border-radius: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.info-body {
+    color: #292929;
+    padding: 10px;
+}
+
+.info-body table {
+    border: none;
+    width: 100%;
+}
+.info-body td {
+    border: none;
+    width: 50%;
+}

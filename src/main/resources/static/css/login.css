@@ -1,0 +1,180 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #F6F0E2;
+    overflow: hidden;
+}
+.libre-baskerville-regular {
+    font-family: "Libre Baskerville", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+
+.parent-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    top: 30%;
+    animation: moveUp 2s ease-in-out 2.3s forwards;
+}
+
+.title-container {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    padding-top: 70px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out 3s forwards;
+}
+
+@keyframes moveUp {
+    to {
+        transform: translateY(-20%);
+    }
+}
+
+#movingLetter {
+    font-size: 100px !important;
+    position: absolute;
+    transition: transform 1s ease-in-out;
+}
+
+#wordContainer {
+    position: absolute;
+    font-size: 43px;
+    top: 50%;
+    left: calc(50% - 40px);
+    transform: translateY(-50%);
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out 1.5s forwards;
+    color: #282828;
+    margin-top: 6px !important;
+    margin-left: -5px;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+#word {
+    max-height: 40px;
+    color: #282828;
+    margin: 0;
+    line-height: 0.9;
+    margin-top: 5px;
+}
+/*384840*/
+
+
+
+.login-box .user-box {
+    position: relative;
+}
+
+.login-box .user-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #282828;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #282828;
+    outline: none;
+    background: transparent;
+    border-radius: 0;
+}
+
+.login-box .user-box label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #282828;
+    pointer-events: none;
+    transition: .5s;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: #1e1e1e;
+    font-size: 12px;
+}
+
+.login-box form .inp-btn {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #F6F0E2;
+    background-color: #384840;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    border-radius: 8px;
+    transition: .5s;
+    margin-top: 40px;
+    letter-spacing: 4px
+}
+
+.login-box .inp-btn:hover {
+    background: #313f38;
+    color: #282828;
+    border-radius: 8px;
+    box-shadow: 0 0 5px #384840;
+}
+
+a {
+    text-decoration: none;
+    color: #384840;
+}
+
+
+/* Custom dropdown styling */
+.custom-dropdown {
+    position: relative;
+}
+
+/* Custom dropdown styling */
+.custom-dropdown select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #282828;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #282828;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+    background-color: #F6F0E2; /* Change the background color here */
+}
+
+.custom-dropdown select option {
+    padding: 20px 20px !important; /* Set bigger paddings for each option */
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+}

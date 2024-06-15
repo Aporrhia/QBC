@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="/image/png" href="/images/Qw.png">
+    <title>QBC Account</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/css/settings.css">
+</head>
+    
+</header>
+<body class="libre-baskerville-regular">
+    <header class="header d-flex justify-content-between p-3">
+        <!-- Logo -->
+        <img src="/images/Q.png" alt="QBC Logo" class="logo" style="height: 75px;">
+        <!-- Logout button -->
+        <form action="/logout" method="POST">
+            <button type="submit" class="back-btn">Log Out</button>
+        </form>
+    </header>
+    
+    <!-- Sticky Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid justify-content-cente">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/account">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Transactions
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/transactions">Transaction History</a></li>
+                            <li><a class="dropdown-item" href="/transactions/form">New Transaction</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cards">Cards</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Settings</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <!-- User account details -->
+                <div class="col-md-6">
+                    <h1 class="text-center">Help Center</h1>
+                    <div class="help-main text-light text-center mt-2">
+                        <span style="color: #292929;">If You have any questions, please, contact the Administrator.</span>
+                        <span><a href="https://github.com/Aporrhia" target="_blank" style="color: #372e1e;">GitHub</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Footer -->
+    <footer class="footer m-0 mt-2 col-12">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h5>Socials</h5>
+                    <ul>
+                        <li><a href="https://github.com/Aporrhia" target="_blank" style="color: #372e1e;">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h5>Useful Links</h5>
+                    <ul>
+                        <li><a href="/settings" style="color: #372e1e;">Settings</a></li>
+                        <li><a href="/help" style="color: #372e1e;">Help</a></li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h5>Connections</h5>
+                    <ul>
+                        <li><p>United Kingdom</p></li>
+                        <li><p>7, Michael Blvd., London</p></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <span class="text-muted" style="font-size: 12px;">© <span id="currentYear"></span> Apporhia. All Rights Reserved.</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cards</title>
+    <link rel="icon" type="/image/png" href="/images/Q.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/card.css">
+</head>
+
+<body class="libre-baskerville-regular">
+    <header class="header d-flex justify-content-between p-3">
+        <!-- Logo -->
+        <img src="/images/Q.png" alt="QBC Logo" class="logo" style="height: 75px;">
+        <!-- Logout button -->
+        <form action="/logout" method="POST">
+            <button type="submit" class="back-btn">Log Out</button>
+        </form>
+    </header>
+    
+    <!-- Sticky Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid justify-content-cente">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/account">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Transactions
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="transactions">Transaction History</a></li>
+                            <li><a class="dropdown-item" href="/transactions/form">New Transaction</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Cards</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/settings">Settings</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+            <!-- Card Content -->
+            <div class="col-md-8 container" style="margin-top: 220px;">
+                <h1 class="text-center mb-5">List of cards</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="card : ${cards}">
+                            <td>
+                                <div class="card credit-card p-0">
+                                    <div class="card-body d-flex flex-column justify-content-center align-items-center col-12">
+                                        <div class="row">
+                                            <!-- Upper part -->
+                                            <div class="col-12" style="padding-top: 70px;">
+                                                <p class="card-title text-center" style="font-size: 24px;" id="cardNumber"><span th:text="${#strings.replace(card.number, '(\\d{4})', '$1 ')}"></span></p>
+                                            </div>
+                                            <!-- Lower part -->
+                                            <div class="col-12">
+                                                <div class="d-flex row justify-content-center">
+                                                    <div class="col-6 text-end">
+                                                        <p class="card-text"><span th:text="${#dates.format(card.expirationDate, 'MM/yy')}"></span></p>
+                                                        <p class="card-text"><span th:text="${card.account.accFname + ' ' + card.account.accLname}"></span></p>
+                                                    </div>
+                                                    <div class="col-6 position-relative">
+                                                        <img th:if="${card.branch == T(com.transactions_page.transactions_art.models.Card.CardBranch).Visa}" src="/images/Vlogo.png" alt="Visa" class="position-absolute bottom-0 end-0" style="height: 30px;">
+                                                        <img th:if="${card.branch == T(com.transactions_page.transactions_art.models.Card.CardBranch).MasterCard}" src="/images/MClogo.png" alt="MasterCard" class="position-absolute bottom-0 end-0" style="height: 30px;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 text-center mt-2">
+                                    <form action="/deleteCard" method="post">
+                                        <button type="submit" class="btn btn-danger" name="id" th:value="${card.id}">Delete Card</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- New Card Form -->
+        <div class="form-box col-md-6 mx-auto mb-8 px-2">
+            <h2>Create New Card</h2>
+                
+            <div class="d-flex justify-content-center align-items-center">
+                <div th:if="${error}" class="alert alert-danger">
+                    <p th:text="${error}"></p>
+                </div>
+            </div>
+            <form action="/createCard" method="post">
+                <div class="tr-box">
+                    <div class="custom-dropdown">
+                        <select id="type" name="type" required>
+                            <option value="debit">Debit</option>
+                            <option value="credit">Credit</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="tr-box">
+                    <input type="text" id="number" name="number" oninput="this.value = this.value.replace(/[^0-9]/g, ''); validateCardNumber(this);" minlength="16" maxlength="16" required>
+                    <label>Card Number</label>
+                </div>
+
+                <div class="tr-box">
+                    <div class="custom-dropdown" required>
+                        <select id="expirationMonth" name="expirationMonth">
+                            <option value="">Month</option>
+                            <option th:each="month : ${#numbers.sequence(1, 12)}" th:attr="value=${month < 10 ? '0' + month : month}" th:text="${month < 10 ? '0' + month : month}"></option>
+                        </select>
+                    </div>
+                    <div class="custom-dropdown" required>
+                        <select id="expirationYear" name="expirationYear">
+                            <option value="">Year</option>
+                            <option th:each="year : ${#numbers.sequence(T(java.time.Year).now().value, T(java.time.Year).now().value + 15)}" th:value="${year}" th:text="${year}"></option>
+                        </select>
+                    </div>
+                </div> 
+                <button type="submit" name="action" class="inp-btn">Create Card</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer m-0 mt-2 col-12">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h5>Socials</h5>
+                    <ul>
+                        <li><a href="https://github.com/Aporrhia" target="_blank" style="color: #372e1e;">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h5>Useful Links</h5>
+                    <ul>
+                        <li><a href="/settings" style="color: #372e1e;">Settings</a></li>
+                        <li><a href="/help" style="color: #372e1e;">Help</a></li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h5>Connections</h5>
+                    <ul>
+                        <li><p>United Kingdom</p></li>
+                        <li><p>7, Michael Blvd., London</p></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <span class="text-muted" style="font-size: 12px;">© <span id="currentYear"></span> Apporhia. All Rights Reserved.</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/card.js"></script>
+</html>

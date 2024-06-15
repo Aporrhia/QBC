@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction Form</title>
+    <link rel="icon" type="/image/png" href="/images/Q.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/css/tr_operation.css">
+</head>
+<body class="libre-baskerville-regular">
+    <header class="header d-flex justify-content-between p-3">
+        <!-- Logo -->
+        <img src="/images/Q.png" alt="QBC Logo" class="logo" style="height: 75px;">
+        <!-- Logout button -->
+        <form action="/logout" method="POST">
+            <button type="submit" class="back-btn">Log Out</button>
+        </form>
+    </header>
+    
+    <!-- Sticky Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid justify-content-cente">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/account">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Transactions
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/transactions">Transaction History</a></li>
+                            <li><a class="dropdown-item" href="#">New Transaction</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cards">Cards</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/settings">Settings</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container-top">
+        <!-- Success message -->
+        <div th:if="${successMessage}" class="alert alert-success" role="alert">
+            <p th:text="${successMessage}"></p>
+        </div>
+    
+        <!-- Error message -->
+        <div class="d-flex justify-content-center align-items-center">
+            <div th:if="${error}" class="alert alert-danger">
+                <p th:text="${error}"></p>
+            </div>
+        </div>
+
+        <h1 class="text-center mb-5">Transaction Form</h1>
+        <div class="form-box col-md-6 mx-auto">
+            <form th:action="@{/transactions/send}" th:object="${transaction}" method="post">
+                <!-- Recipient's Information -->
+                <div class="tr-box">
+                    <div class="custom-dropdown">
+                        <select id="senderCreditCard" th:field="*{senderCard.number}" required>
+                            <option th:each="card : ${cards}" th:value="${card.number}" th:text="${card.number}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="tr-box">
+                    <input type="text" id="recipientFirstName" th:field="*{recipientAccount.accFname}" oninput="this.value = this.value.replace(/[^A-Za-z]/g, '');" required>
+                    <label>Recipient's First Name</label>
+                </div>
+                <div class="tr-box">
+                    <input type="text" id="recipientLastName" th:field="*{recipientAccount.accLname}" oninput="this.value = this.value.replace(/[^A-Za-z]/g, '');" required>
+                    <label>Recipient's Last Name</label>
+                </div>
+                <div class="tr-box">
+                    <input type="text" id="recipientCreditCard" th:field="*{recipientCard.number}" oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
+                    <label>Recipient's Credit card</label>
+                </div>
+                <div class="tr-box">
+                    <input type="text" id="recipientIban" th:field="*{recipientAccount.accIban}" required>
+                    <label>Recipient's IBAN</label>
+                </div>
+                <div class="tr-box">
+                    <input type="text" id="amount" th:field="*{amount}" value=" " oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1').replace(/(\.\d{2})./g,'$1'); if (parseFloat(this.value) > 10000000) { this.value = 10000000; }" required>
+                    <label>Amount</label>
+                </div>
+                <div class="tr-box">
+                    <input type="text" id="description" th:field="*{description}" required>
+                    <label>Description</label>
+                </div>
+                
+                <div class="row">
+                    <div class="col text-center">
+                        <button type="submit" name="action" value="login" class="inp-btn">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+
+    <!-- Footer -->
+    <footer class="footer m-0 mt-2 col-12">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h5>Socials</h5>
+                    <ul>
+                        <li><a href="https://github.com/Aporrhia" target="_blank" style="color: #372e1e;">GitHub</a></li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h5>Useful Links</h5>
+                    <ul>
+                        <li><a href="/settings" style="color: #372e1e;">Settings</a></li>
+                        <li><a href="/help" style="color: #372e1e;">Help</a></li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h5>Connections</h5>
+                    <ul>
+                        <li><p>United Kingdom</p></li>
+                        <li><p>7, Michael Blvd., London</p></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <span class="text-muted" style="font-size: 12px;">© <span id="currentYear"></span> Apporhia. All Rights Reserved.</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
