@@ -1,3 +1,19 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #F6F0E2;
+}
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.libre-baskerville-regular {
+    font-family: "Libre Baskerville", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
 
 .card-columns {
     column-count: 2;
@@ -20,19 +36,6 @@
     max-width: 350px;
     margin: auto;
 }
-
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    background-color: #F6F0E2;
-}
-
-.libre-baskerville-regular {
-    font-family: "Libre Baskerville", serif;
-    font-weight: 400;
-    font-style: normal;
-  }
 
 .header {
     position: fixed;
@@ -174,6 +177,7 @@ a {
 }
 
 .footer {
+    position: fixed;
     z-index: 999;
     bottom: 0;
     width: 100%;

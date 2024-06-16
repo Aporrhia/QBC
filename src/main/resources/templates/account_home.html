@@ -78,7 +78,6 @@
                             <label for="note">Your Note:</label>
                             <textarea id="note" name="note" rows="4" cols="50" th:if="${note != null}" th:text="${note.description}">No notes</textarea>
                             <textarea id="note" name="note" rows="4" cols="50" th:unless="${note != null}">No notes</textarea>  
-                            <!-- Update and Delete buttons -->
                             <button type="submit" formaction="/updateNote">Update</button>
                             <button type="submit" formaction="/deleteNote">Delete</button>
                         </form>

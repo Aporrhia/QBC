@@ -88,7 +88,7 @@
                     <label>Recipient's Last Name</label>
                 </div>
                 <div class="tr-box">
-                    <input type="text" id="recipientCreditCard" th:field="*{recipientCard.number}" oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
+                    <input type="text" id="recipientCreditCard" th:field="*{recipientCard.number}" oninput="this.value = this.value.replace(/[^0-9]/g, '');" minlength="16" maxlength="16" required>
                     <label>Recipient's Credit card</label>
                 </div>
                 <div class="tr-box">
