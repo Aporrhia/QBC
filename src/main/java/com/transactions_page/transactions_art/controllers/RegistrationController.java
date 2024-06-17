@@ -4,15 +4,6 @@ import com.transactions_page.transactions_art.models.Account;
 import com.transactions_page.transactions_art.models.Country;
 import com.transactions_page.transactions_art.models.Bank;
 
-import com.transactions_page.transactions_art.controllers.AccountService;
-import com.transactions_page.transactions_art.controllers.CountryService;
-import com.transactions_page.transactions_art.controllers.BankService;
-import com.transactions_page.transactions_art.controllers.IBANValidator;
-import com.transactions_page.transactions_art.controllers.ANValidator;
-
-import java.util.Optional;
-import java.util.Random;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -23,13 +14,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.NoHandlerFoundException;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class RegistrationController {

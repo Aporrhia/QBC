@@ -1,7 +1,6 @@
 package com.transactions_page.transactions_art.controllers;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.transactions_page.transactions_art.controllers.AccountService;
 import com.transactions_page.transactions_art.models.Account;

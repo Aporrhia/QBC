@@ -5,15 +5,10 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPRow;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.collection.PdfTargetDictionary;
 import com.itextpdf.text.pdf.draw.DottedLineSeparator;
-import com.transactions_page.transactions_art.controllers.ANValidator;
 
 import com.transactions_page.transactions_art.models.Transaction;
-import com.transactions_page.transactions_art.models.Bank;
 import com.transactions_page.transactions_art.models.Account;
-import com.transactions_page.transactions_art.models.Country;
-import com.transactions_page.transactions_art.models.Card;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Date;
@@ -25,10 +20,6 @@ public class PDFGenerator {
     public byte[] generatePdf(Transaction transaction, Optional<Account> account) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         Document document = new Document();
-        Bank bank = account.get().getBank();
-        Country country = account.get().getCountry();
-        Date dobAcc = account.get().getAccDOB();
-        Date creationDateAcc = account.get().getAccCreationDate();
         long accNum = account.get().getAccNum();
 
 

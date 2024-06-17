@@ -1,7 +1,5 @@
 package com.transactions_page.transactions_art.controllers;
 
-import com.transactions_page.transactions_art.models.Account;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;

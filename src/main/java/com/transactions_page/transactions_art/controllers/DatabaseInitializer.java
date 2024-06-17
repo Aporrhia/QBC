@@ -10,7 +10,6 @@ public class DatabaseInitializer {
 
     public void initializeDatabase() {
         try {
-            // Replace with your database connection details
             String url = "jdbc:mysql://localhost:3306/transactions?createDatabaseIfNotExist=true";
             String username = "root";
             String password = "0000";
@@ -120,7 +119,6 @@ public class DatabaseInitializer {
             // Close the connection
             conn.close();
         } catch (Exception e) {
-            // Print the stack trace and rethrow the exception
             e.printStackTrace();
         }
     }

@@ -2,7 +2,6 @@ package com.transactions_page.transactions_art.controllers;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.transactions_page.transactions_art.models.Card;
 

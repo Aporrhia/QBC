@@ -1,7 +1,6 @@
 package com.transactions_page.transactions_art.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -11,15 +10,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import com.transactions_page.transactions_art.controllers.CardService;
-import com.transactions_page.transactions_art.controllers.AccountService;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.transactions_page.transactions_art.models.Account;
@@ -111,7 +104,6 @@ public class CardController {
             card.setAccount(account); 
             card.setStatus(Card.CardStatus.active);
 
-            // Save the new card
             cardService.save(card);
         }
 

@@ -1,6 +1,5 @@
 package com.transactions_page.transactions_art.controllers;
 
-import org.apache.catalina.filters.HttpHeaderSecurityFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,7 +16,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -237,7 +235,6 @@ public class TransactionController {
             redirectAttributes.addFlashAttribute("error", "Transaction failed. Please check the details and try again.");
         }
     
-        // Redirect the user to the transactions page
         return "redirect:/transactions";
     }
 
@@ -257,11 +254,8 @@ public class TransactionController {
             // Store the PDF data in a flash attribute
             redirectAttributes.addFlashAttribute("pdfData", pdfData);
 
-
-            // Redirect to the download page
             return "redirect:/transactions/downloadPdf";
         } else {
-            // Redirect to an error page if the transaction is not found
             return "redirect:/error";
         }
     }
@@ -269,7 +263,6 @@ public class TransactionController {
     @GetMapping("/transactions/downloadPdf")
     public ResponseEntity<byte[]> downloadPdf(@ModelAttribute("pdfData") byte[] pdfData) {
         Integer loggedInAccountId = (Integer) session.getAttribute("loggedInAccountId");
-        Integer id = (Integer) session.getAttribute("id"); // get the id from the session
 
         // Retrieve the Account object for the logged in account
         Optional<Account> loggedInAccountOptional = accountService.findById(loggedInAccountId);
@@ -278,8 +271,6 @@ public class TransactionController {
         }
         Account loggedInAccount = loggedInAccountOptional.get();
 
-        // Get the accDOB from the Account object
-        Date accDOB = loggedInAccount.getAccDOB();
 
         // Set up HTTP headers for the response
         HttpHeaders headers = new HttpHeaders();
@@ -289,7 +280,6 @@ public class TransactionController {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String currentDate = sdf.format(new Date());
 
-        Date now = new Date();
         String accountNumber = Long.toString(loggedInAccount.getAccNum());
         String filename = currentDate + "_" + accountNumber + ".pdf";
 

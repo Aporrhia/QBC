@@ -93,13 +93,10 @@ a {
     color: #384840;
 }
 
-
-/* Custom dropdown styling */
 .custom-dropdown {
     position: relative;
 }
 
-/* Custom dropdown styling */
 .custom-dropdown select {
     appearance: none;
     -webkit-appearance: none;
@@ -114,11 +111,11 @@ a {
     outline: none;
     background: transparent;
     cursor: pointer;
-    background-color: #F6F0E2; /* Change the background color here */
+    background-color: #F6F0E2;
 }
 
 .custom-dropdown select option {
-    padding: 20px 20px !important; /* Set bigger paddings for each option */
+    padding: 20px 20px !important;
 }
 
 .error-message {
@@ -136,5 +133,5 @@ a {
 
 .form-window.active {
     opacity: 1;
-    max-height: 1000px; /* Adjust this value according to your content */
+    max-height: 1000px;
 }
