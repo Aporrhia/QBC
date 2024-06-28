@@ -48,10 +48,12 @@ public class RegistrationController {
     public String handleRegistration(@RequestParam("country") int countryId,
                                     @RequestParam("bank") int bankId,
                                     @RequestParam("phone") String phoneNumber, 
+                                    @RequestParam("accDOB") String accDOBtest,
                                     @RequestParam("accDOB") @DateTimeFormat(pattern = "yyyy-MM-dd") Date accDOB, 
                                     @ModelAttribute Account account, Model model) 
     {
-        System.out.println("Country ID: " + countryId);
+        System.out.println("accDOB: " + countryId + " " + bankId + " " + phoneNumber + " " + accDOBtest);
+
         Country country = countryService.findById(countryId);
         int countryPhoneCode = country.getCountryPhoneCode();
         account.setCountry(country);
@@ -67,8 +69,6 @@ public class RegistrationController {
             return "registration";
         }
         LocalDate localAccDOB = accDOB.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        System.out.println("Account DOB: " + localAccDOB);
-        System.out.println("Current date: " + LocalDate.now());
 
         if (!localAccDOB.isBefore(LocalDate.now().minusYears(18))) {
             model.addAttribute("error", "Registering client must be older than 18 y.o.");
